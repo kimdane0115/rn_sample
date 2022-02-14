@@ -3,6 +3,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import HomeScreen from './screens/HomeScreen';
 import DetailScreen from './screens/DetailScreen';
+import {View, Text, TouchableOpacity} from 'react-native';
 
 const Stack = createNativeStackNavigator();
 
@@ -10,8 +11,45 @@ function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName="Home">
-        <Stack.Screen name="Home" component={HomeScreen} />
-        <Stack.Screen name="Detail" component={DetailScreen} />
+        <Stack.Screen 
+          name="Home" 
+          component={HomeScreen}
+          options={{
+            title: '홈123',
+            headerStyle: {
+              backgroundColor: '#29b6f6',
+            },
+            headerTintColor: '#ffffff',
+            headerTitleStyle: {
+              fontWeight: 'bold',
+              fontSize: 20,
+            },
+          }}
+       />
+        <Stack.Screen
+          name="Detail"
+          component={DetailScreen}
+          // options={({route}) => ({
+          //   title: `상세 정보 F - ${route.params.id}`,
+          // })}
+          options={{
+            headerLeft: ({onPress}) => (
+              <TouchableOpacity onPress={onPress}>
+                <Text>Left</Text>
+              </TouchableOpacity>
+            ),
+            headerTitle: ({children}) => (
+              <View>
+                <Text>{children}</Text>
+              </View>
+            ),
+            headerRight: () => (
+              <View>
+                <Text>Right</Text>
+              </View>
+            ),
+          }}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );
