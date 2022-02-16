@@ -4,15 +4,19 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import HomeScreen from './screens/HomeScreen';
 import DetailScreen from './screens/DetailScreen';
 import {View, Text, TouchableOpacity} from 'react-native';
+import HeaderlessScreen from './screens/HeaderlessScreen';
 
 const Stack = createNativeStackNavigator();
 
 function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Home">
-        <Stack.Screen 
-          name="Home" 
+      <Stack.Navigator initialRouteName="Home"
+        //Stack Navigator가 관리하는 모든 화면에서 헤더를 업애고 싶을때
+        //screenOptions={{headerShown: false,}}
+      >
+        <Stack.Screen
+          name="Home"
           component={HomeScreen}
           options={{
             title: '홈123',
@@ -48,6 +52,13 @@ function App() {
                 <Text>Right</Text>
               </View>
             ),
+          }}
+        />
+        <Stack.Screen
+          name="Headerless"
+          component={HeaderlessScreen}
+          options={{
+            headerShown: false,
           }}
         />
       </Stack.Navigator>
