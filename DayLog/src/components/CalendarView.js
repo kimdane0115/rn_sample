@@ -28,6 +28,7 @@ function CalendarView({markedDates, selectedDate, onSelectDate}) {
         <Calendar
             style={styles.calendar}
             markedDates={markedSelectedDate}
+            hideExtraDays={true}
             onDayPress={(day) => {
                 //console.log(day);
                 onSelectDate(day.dateString);
@@ -37,6 +38,7 @@ function CalendarView({markedDates, selectedDate, onSelectDate}) {
                 arrowColor: '#009688',
                 dotColor: '#009688',
                 todayTextColor: '#009688',
+                disabledByDefault: true,
             }}
         />
     );

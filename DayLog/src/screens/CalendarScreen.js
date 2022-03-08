@@ -1,6 +1,7 @@
 import { format } from 'date-fns';
 import React, {useContext, useMemo, useState} from 'react';
 import CalendarView from '~/components/CalendarView';
+import BigCalendarView from '~/components/BigCalendarView';
 import FeedList from '~/components/FeedList';
 import LogContext from '~/contexts/LogContext';
 
@@ -24,11 +25,13 @@ function CalendarScreen() {
         <FeedList
             logs={filteredLogs}
             ListHeaderComponent={
-                <CalendarView
-                    markedDates={markedDates}
-                    selectedDate={selectedDate}
-                    onSelectDate={setSelectedDate}
-                />
+                // <CalendarView
+                //     markedDates={markedDates}
+                //     selectedDate={selectedDate}
+                //     onSelectDate={setSelectedDate}
+                // />
+                // Big CalendarView
+                <BigCalendarView />
             }
         />
     );
