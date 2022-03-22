@@ -1,7 +1,7 @@
 import firestore from '@react-native-firebase/firestore';
 
 const postsCollection = firestore().collection('posts');
-export const PAGE_SIZE = 3;
+export const PAGE_SIZE = 12;
 
 export function createPost({user, photoURL, description}) {
     return postsCollection.add({
@@ -47,5 +47,15 @@ export async function getNewerPosts(id, userId) {
         id,
         mode: 'newer',
         userId,
+    });
+}
+
+export function removePost(id) {
+    return postsCollection.doc(id).delete();
+}
+
+export function updatePost({id, description}) {
+    return postsCollection.doc(id).update({
+        description,
     });
 }

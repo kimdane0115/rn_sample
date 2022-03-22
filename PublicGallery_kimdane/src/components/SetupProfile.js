@@ -9,6 +9,7 @@ import { createUser } from "~/lib/users";
 import BorderedInput from "./BorderedInput";
 import CustomButton from "./CustomButton";
 import {useUserContext} from '../contexts/UserContext';
+import Avatar from "./Avatar";
 
 function SetupProfile() {
     
@@ -77,12 +78,13 @@ function SetupProfile() {
     return(
         <View style={styles.block}>
             <Pressable onPress={onSelectImage}>
-                <Image
+                <Avatar source={response && {uri: response.uri}} size={128} />
+                {/* <Image
                     style={styles.circle}
                     source={
                         response ? {uri: response?.assets[0]?.uri} : require('../assets/user.png')
                     }
-                />
+                /> */}
             </Pressable>
             <View style={styles.form}>
                 <BorderedInput
@@ -112,12 +114,12 @@ const styles = StyleSheet.create({
         paddingHorizontal: 16,
         width: '100%',
     },
-    circle: {
-        backgroundColor: '#cdcdcd',
-        borderRadius: 64,
-        width: 128,
-        height: 128,
-    },
+    // circle: {
+    //     backgroundColor: '#cdcdcd',
+    //     borderRadius: 64,
+    //     width: 128,
+    //     height: 128,
+    // },
     form: {
         marginTop: 16,
         width: '100%',
