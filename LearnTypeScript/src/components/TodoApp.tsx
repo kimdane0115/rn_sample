@@ -1,4 +1,6 @@
-import { isMetaProperty } from '@babel/types';
+import useTodos from '~/hooks/useTodos';
+import useTodosActions from '~/hooks/useTodosActions';
+//import { isMetaProperty } from '@babel/types';
 import React, {useState} from 'react';
 import {
     StyleSheet,
@@ -22,11 +24,15 @@ function BlackButton({onPress, title}: {onPress(): void; title: string}) {
 }
 
 function TodoItem({id, text, done}: {id: number; text: string; done: boolean}) {
+    const {toggle, remove} = useTodosActions();
+
     const onToggle = () => {
         console.log(`토글 ${id}`);
+        toggle(id);
     };
     const onRemove = () => {
         console.log(`제거 ${id}`);
+        remove(id);
     };
     return (
         <View style={styles.todo}>
@@ -40,10 +46,11 @@ function TodoItem({id, text, done}: {id: number; text: string; done: boolean}) {
 }
 
 function Todos() {
-    const todos = [
-        {id: 1, text: '리택트 네이티브 배우기', done: true},
-        {id: 2, text: '상태 관리 배우기', done: false},
-    ];
+    // const todos = [
+    //     {id: 1, text: '리택트 네이티브 배우기', done: true},
+    //     {id: 2, text: '상태 관리 배우기', done: false},
+    // ];
+    const todos = useTodos();
 
     return (
         <FlatList
@@ -61,9 +68,11 @@ function Todos() {
 
 function TodoInput() {
     const [text, setText] = useState('');
+    const {add} = useTodosActions();
 
     const onPress = () => {
         console.log('등록');
+        add(text);
         setText('');
     };
 
